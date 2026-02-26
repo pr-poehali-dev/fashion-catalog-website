@@ -1,6 +1,59 @@
 import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 
+// ─── LOGO ─────────────────────────────────────────────────────────────────────
+
+function QomarunLogo({ size = 40, dark = false }: { size?: number; dark?: boolean }) {
+  const em = dark ? "#fff" : "#0d4a2e";
+  const gold = "#c9a227";
+  return (
+    <svg width={size * 3.2} height={size} viewBox="0 0 192 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Qomarun">
+      {/* Полумесяц — символ арабистики */}
+      <path
+        d="M28 8 C14 8 6 18 6 30 C6 42 14 52 28 52 C22 46 18 38 18 30 C18 22 22 14 28 8Z"
+        fill={gold}
+        opacity="0.92"
+      />
+      <path
+        d="M24 12 C32 12 38 20 38 30 C38 40 32 48 24 52 C36 52 46 42 46 30 C46 18 36 8 24 12Z"
+        fill={em}
+        opacity="0.85"
+      />
+      {/* Звезда */}
+      <polygon
+        points="44,12 45.5,17 50.5,17 46.5,20 48,25 44,22 40,25 41.5,20 37.5,17 42.5,17"
+        fill={gold}
+        opacity="0.9"
+      />
+      {/* Орнаментальная горизонтальная линия под текстом — арабский стиль */}
+      <line x1="58" y1="47" x2="190" y2="47" stroke={gold} strokeWidth="1.2" strokeDasharray="3 2" opacity="0.6"/>
+      {/* Текст названия */}
+      <text
+        x="58" y="38"
+        fontFamily="Cormorant Garamond, serif"
+        fontSize="30"
+        fontWeight="600"
+        letterSpacing="3"
+        fill={em}
+      >
+        QOMARUN
+      </text>
+      {/* Подпись-арабеска под именем */}
+      <text
+        x="60" y="56"
+        fontFamily="Cormorant Garamond, serif"
+        fontSize="9"
+        fontWeight="400"
+        letterSpacing="5"
+        fill={gold}
+        opacity="0.8"
+      >
+        قمرون
+      </text>
+    </svg>
+  );
+}
+
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
 const HERO_SLIDES = [
@@ -62,6 +115,7 @@ const BLOG_POSTS = [
   { id: 1, title: "Изумрудный — цвет сезона", date: "14 февраля 2026", category: "Тренды", img: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80", excerpt: "Как носить насыщенные оттенки зелёного и не выглядеть как ёлка — наш гид по трендовому цвету." },
   { id: 2, title: "Капсульный гардероб: с чего начать", date: "5 февраля 2026", category: "Стиль", img: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600&q=80", excerpt: "10 базовых вещей, которые сделают ваш гардероб функциональным и стильным круглый год." },
   { id: 3, title: "Детская мода 2026: комфорт прежде всего", date: "28 января 2026", category: "Детское", img: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600&q=80", excerpt: "Что выбрать для активного ребёнка: советы стилиста и педиатра об одежде для детей." },
+
 ];
 
 type IconName = "Package" | "Truck" | "RotateCcw" | "Shield" | "MapPin" | "Phone" | "Mail" | "Instagram" | "CreditCard" | "Smartphone" | "Wallet" | "Leaf" | "Award" | "Heart" | "SlidersHorizontal" | "X" | "PackageX" | "ShoppingBag" | "Trash2" | "ArrowRight" | "ArrowDown" | "CheckCircle" | "Search" | "Menu" | "Send" | "Youtube";
@@ -436,7 +490,7 @@ export default function Index() {
       <section className="gradient-hero py-24 px-6 text-center text-white">
         <p className="font-body text-xs uppercase mb-4" style={{ letterSpacing: "0.3em", color: "#c9a227" }}>Специальное предложение</p>
         <h2 className="font-display font-light mb-6" style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}>Скидка 15% на первый заказ</h2>
-        <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.7)" }}>Введите промокод <strong style={{ color: "#c9a227" }}>VERDURE15</strong> при оформлении</p>
+        <p className="font-body text-lg mb-10" style={{ color: "rgba(255,255,255,0.7)" }}>Введите промокод <strong style={{ color: "#c9a227" }}>QOMARUN15</strong> при оформлении</p>
         <button onClick={() => gotoCatalog("all")} className="btn-gold font-body font-semibold px-12 py-4 rounded-full text-sm uppercase tracking-widest">Начать покупки</button>
       </section>
     </div>
@@ -555,7 +609,7 @@ export default function Index() {
   const renderBlog = () => (
     <div className="max-w-7xl mx-auto px-6 py-16">
       <div className="section-line mb-3">
-        <p className="font-body text-xs uppercase gold-accent" style={{ letterSpacing: "0.2em" }}>Журнал VERDURE</p>
+        <p className="font-body text-xs uppercase gold-accent" style={{ letterSpacing: "0.2em" }}>Журнал QOMARUN</p>
       </div>
       <h1 className="font-display font-light mb-16" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>Советы и тренды</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -668,8 +722,8 @@ export default function Index() {
           {[
             { icon: "MapPin" as IconName, title: "Адрес шоурума", val: "Москва, ул. Петровка, 15, 2 этаж", sub: "Пн–Сб 10:00–21:00, Вс 11:00–20:00" },
             { icon: "Phone" as IconName, title: "Телефон", val: "+7 (495) 123-45-67", sub: "Ежедневно 9:00–21:00" },
-            { icon: "Mail" as IconName, title: "Email", val: "hello@verdure.ru", sub: "Ответим в течение 2 часов" },
-            { icon: "Instagram" as IconName, title: "Инстаграм", val: "@verdure.store", sub: "Фото, луки, новинки" },
+            { icon: "Mail" as IconName, title: "Email", val: "hello@qomarun.ru", sub: "Ответим в течение 2 часов" },
+            { icon: "Instagram" as IconName, title: "Инстаграм", val: "@qomarun.store", sub: "Фото, луки, новинки" },
           ].map((c, i) => (
             <div key={i} className="flex gap-4 p-5 bg-white rounded-2xl shadow-sm card-hover">
               <div className="w-12 h-12 bg-emerald-custom rounded-xl flex items-center justify-center flex-shrink-0">
@@ -702,7 +756,7 @@ export default function Index() {
     <div>
       <div className="gradient-hero py-28 px-6 text-white text-center">
         <p className="font-body text-xs uppercase mb-4" style={{ letterSpacing: "0.3em", color: "#c9a227" }}>Наша история</p>
-        <h1 className="font-display font-light mb-6" style={{ fontSize: "clamp(3rem, 9vw, 7rem)" }}>О VERDURE</h1>
+        <h1 className="font-display font-light mb-6" style={{ fontSize: "clamp(3rem, 9vw, 7rem)" }}>О QOMARUN</h1>
         <p className="font-body text-xl max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>Мы создаём одежду для людей, которые ценят природу, стиль и качество</p>
       </div>
       <div className="max-w-5xl mx-auto px-6 py-20">
@@ -712,7 +766,7 @@ export default function Index() {
               <p className="font-body text-xs uppercase gold-accent" style={{ letterSpacing: "0.2em" }}>2018 — наше начало</p>
             </div>
             <h2 className="font-display font-light mb-6" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>Мода, вдохновлённая природой</h2>
-            <p className="font-body text-gray-600 leading-relaxed mb-4">VERDURE основан в 2018 году с одной простой идеей: создавать одежду, которая сочетает натуральные материалы с современным силуэтом. Наш первый шоурум открылся в Москве, и уже в первый год мы стали любимым брендом тысяч покупателей.</p>
+            <p className="font-body text-gray-600 leading-relaxed mb-4">QOMARUN основан в 2018 году с одной простой идеей: создавать одежду, которая сочетает натуральные материалы с современным силуэтом. Наш первый шоурум открылся в Москве, и уже в первый год мы стали любимым брендом тысяч покупателей.</p>
             <p className="font-body text-gray-600 leading-relaxed">Сегодня мы предлагаем коллекции для женщин, мужчин и детей. Каждая вещь — это баланс между эстетикой, комфортом и ответственным производством.</p>
           </div>
           <div className="rounded-3xl overflow-hidden" style={{ aspectRatio: "1" }}>
@@ -766,7 +820,9 @@ export default function Index() {
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b" style={{ background: "rgba(255,255,255,0.92)", backdropFilter: "blur(12px)", borderColor: "#eee" }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <button onClick={() => goTo("home")} className="font-display text-2xl font-semibold tracking-wider emerald-text">VERDURE</button>
+          <button onClick={() => goTo("home")} className="flex items-center" aria-label="На главную">
+            <QomarunLogo size={36} dark={false} />
+          </button>
           <nav className="hidden md:flex items-center gap-7">
             {NAV.map(n => (
               <button key={n.key} onClick={() => goTo(n.key)} className={`nav-link ${page === n.key ? "active" : ""}`}>{n.label}</button>
@@ -813,7 +869,9 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             <div>
-              <h3 className="font-display text-3xl font-semibold emerald-text mb-3">VERDURE</h3>
+              <div className="mb-3">
+                <QomarunLogo size={32} dark={true} />
+              </div>
               <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>Одежда и обувь для женщин, мужчин и детей. Качество, стиль, природа.</p>
             </div>
             <div>
@@ -843,7 +901,7 @@ export default function Index() {
             <div>
               <p className="font-body text-xs uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>Контакты</p>
               <p className="font-body text-sm mb-1" style={{ color: "rgba(255,255,255,0.55)" }}>+7 (495) 123-45-67</p>
-              <p className="font-body text-sm mb-5" style={{ color: "rgba(255,255,255,0.55)" }}>hello@verdure.ru</p>
+              <p className="font-body text-sm mb-5" style={{ color: "rgba(255,255,255,0.55)" }}>hello@qomarun.ru</p>
               <div className="flex gap-3">
                 {(["Instagram","Send","Youtube"] as IconName[]).map(ic => (
                   <button key={ic} className="w-9 h-9 rounded-full flex items-center justify-center transition-colors" style={{ border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.6)" }}
@@ -856,7 +914,7 @@ export default function Index() {
             </div>
           </div>
           <div className="border-t pt-6 flex flex-col md:flex-row items-center justify-between gap-3" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-            <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.28)" }}>© 2026 VERDURE. Все права защищены.</p>
+            <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.28)" }}>© 2026 QOMARUN. Все права защищены.</p>
             <p className="font-body text-xs" style={{ color: "rgba(255,255,255,0.28)" }}>Политика конфиденциальности · Оферта · Условия использования</p>
           </div>
         </div>
